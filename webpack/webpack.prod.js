@@ -5,6 +5,6 @@ module.exports = {
 	output: {
 		path: `${appDirName}/dist`,
     filename: '[name]/app.[hash].js',
-    publicPath: 'https://senwii.github.io/awesome-drawing',
+    publicPath: 'https://senwii.github.io/react-template-project',
 	},
 }

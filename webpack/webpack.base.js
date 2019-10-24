@@ -39,7 +39,7 @@ module.exports = {
 	// output: {
 	// 	path: __dirname + '/dist',
   //   filename: '[name]/app.[hash].js',
-  //   publicPath: 'https://senwii.github.io/awesome-drawing',
+  //   publicPath: 'https://senwii.github.io/react-template-project',
 	// },
 	devServer: {
 		contentBase: `${appDirName}/dist`,

@@ -1,5 +1,5 @@
 {
-  "name": "awesome-drawing",
+  "name": "react-template-project",
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,7 @@
     "build": "NODE_ENV=product webpack"
   },
   "author": "senwii",
-  "homepage": "https://senii.github.io/awesome-drawing",
+  "homepage": "https://senii.github.io/react-template-project",
   "license": "ISC",
   "dependencies": {
     "dragula": "^3.7.2",
