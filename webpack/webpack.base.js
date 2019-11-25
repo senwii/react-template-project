@@ -3,6 +3,7 @@ const fs = require('fs')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const appDirName = process.cwd()
 
@@ -96,7 +97,7 @@ module.exports = {
         loader: 'file-loader',
         options: {
           name: '[name].[contenthash].[ext]',
-          outputPath: '/assets/',
+          outputPath: 'assets/',
         },
       },
       {
@@ -115,5 +116,12 @@ module.exports = {
 			chunkFilename: '[name]/[id].[contenthash].css',
 			ignoreOrder: true,
     }),
+    new CopyWebpackPlugin([
+      {
+        from: 'public/*.@(png|svg|jpe?g|gif)',
+        to: 'assets/',
+        flatten: true,
+      },
+    ])
 	]
 }
