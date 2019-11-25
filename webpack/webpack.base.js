@@ -6,6 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const appDirName = process.cwd()
 
+process.env.OUTPUT_DIR = 'dist'
+
 // 入口+HTML模板配置
 function getEntries() {
 	const entry = {}
@@ -20,7 +22,7 @@ function getEntries() {
 				templateParameters: {
 					title: dirName,
 				},
-				filename: `${dirName.toLowerCase()}/index.html`,
+				filename: `${dirName}/index.html`,
 				template: `${appDirName}/public/index.html`,
 			})
 		)
@@ -36,19 +38,25 @@ const  { entry, htmlWebpackPluginList } = getEntries()
 
 module.exports = {
 	entry,
-	// output: {
-	// 	path: __dirname + '/dist',
-  //   filename: '[name]/app.[hash].js',
-  //   publicPath: 'https://senwii.github.io/react-template-project',
-	// },
 	devServer: {
-		contentBase: `${appDirName}/dist`,
+    contentBase: `${appDirName}/${process.env.OUTPUT_DIR}`,
+    // host: '172.23.62.60',
 		compress: true,
 		historyApiFallback: {
 			rewrites: [
-				{ from: /^\/$/, to: '/index\/index.html' },
+        {
+          from: /\/([\s\S]+)\//,
+          to({ parsedUrl }) {
+            const pageName = parsedUrl.href.split('/')[1] || ''
+            if (Object.keys(entry).find(name => name === pageName) !== undefined) {
+              return `/${pageName}`
+            } else {
+              return '/'
+            }
+          }
+        },
 			],
-		},
+    },
   },
   resolve: {
     alias: {
@@ -60,9 +68,9 @@ module.exports = {
 		splitChunks: {
 			cacheGroups: {
 				vendor: {
-					test: /node_modules\/(react|react-dom)/,
-					filename: 'vendor.[hash].js',
-					chunks: 'all',
+					test: /node_modules\/(react|react-dom|react-router-dom)\//,
+          name: 'vendor',
+          chunks: 'all',
 				},
 			},
 		},
@@ -83,15 +91,29 @@ module.exports = {
 					'less-loader',
 				],
       },
+      {
+        test: /\.(png|svg|jpe?g|gif)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[contenthash].[ext]',
+          outputPath: '/assets/',
+        },
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [
+          'file-loader',
+        ],
+      },
 		],
 	},
 	plugins: [
 		...htmlWebpackPluginList,
 		new CleanWebpackPlugin(),
 		new MiniCssExtractPlugin({
-			filename: '[name]/main.[hash].css',
-			chunkFilename: '[name]/[id].[hash].css',
+			filename: '[name]/main.[contenthash].css',
+			chunkFilename: '[name]/[id].[contenthash].css',
 			ignoreOrder: true,
-		}),
+    }),
 	]
 }
