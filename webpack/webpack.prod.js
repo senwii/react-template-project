@@ -6,6 +6,6 @@ module.exports = {
 		path: `${appDirName}/${process.env.OUTPUT_DIR}`,
     filename: '[name]/app.[contenthash].js',
     chunkFilename: 'chunks/[name].[contenthash].js',
-    publicPath: 'https://senwii.github.io/react-template-project',
+    publicPath: 'https://senwii.github.io/react-template-project/',
 	},
 }
