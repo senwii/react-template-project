@@ -6,6 +6,6 @@ module.exports = {
     path: `${appDirName}/${process.env.OUTPUT_DIR}`,
     filename: '[name]/app.[contenthash].js',
     chunkFilename: 'chunks/[name].[contenthash].js',
-    publicPath: '/',
+    publicPath: process.env.PATH_PREFIX,
 	},
 }

@@ -1,13 +1,14 @@
 const fs = require('fs')
+const webpack = require('webpack')
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-const appDirName = process.cwd()
+const projectName = require('../package.json').name
 
-process.env.OUTPUT_DIR = 'dist'
+const appDirName = process.cwd()
 
 // 入口+HTML模板配置
 function getEntries() {
@@ -35,7 +36,23 @@ function getEntries() {
 	}
 }
 
+// 设置环境变量
+function setEnvVariables(option) {
+  const env = {}
+  Object.entries(option || {}).map(item => {
+    const [key, val] = item
+    process.env[key] = val
+    env[`process.env.${key}`] = val
+  })
+
+  return env
+}
+
 const  { entry, htmlWebpackPluginList } = getEntries()
+const env = setEnvVariables({
+  OUTPUT_DIR: 'dist',
+  PATH_PREFIX: `/${projectName}/`,
+})
 
 module.exports = {
 	entry,
@@ -48,9 +65,12 @@ module.exports = {
         {
           from: /\/([\s\S]+)\//,
           to({ parsedUrl }) {
-            const pageName = parsedUrl.href.split('/')[1] || ''
+            const pageName = parsedUrl
+              .href
+              .replace(new RegExp(`^${process.env.PATH_PREFIX}`), '/')
+              .split('/')[1] || ''
             if (Object.keys(entry).find(name => name === pageName) !== undefined) {
-              return `/${pageName}`
+              return `${process.env.PATH_PREFIX}${pageName}`
             } else {
               return '/'
             }
@@ -122,6 +142,7 @@ module.exports = {
         to: 'assets/',
         flatten: true,
       },
-    ])
+    ]),
+    new webpack.DefinePlugin(env),
 	]
 }

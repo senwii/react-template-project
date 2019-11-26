@@ -12,7 +12,7 @@ const routes = [
 ]
 
 // set current pageName as base
-const basename = 'Index'
+const basename = `${process.env.PATH_PREFIX}Index`
 
 export {
   basename,

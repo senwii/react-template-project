@@ -12,4 +12,4 @@ SPA页面结构参考`/src/pages/Index/`
 
 新增MPA页面：`/src/pages/`目录下新建一个文件夹即可，参考`/src/pages/Index/`
 
-访问页面：localhost:${port}/${pageFolderName}
+访问页面：localhost:${port}${pathPrefix}${pageFolderName}
