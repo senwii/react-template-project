@@ -15,9 +15,9 @@ function App() {
   return (
     <div className="root">
       <BrowserRouter basename={ basename }>
-        <Link to="/hello">Hello</Link>
+        <Link to="hello">Hello</Link>
         <span style={{ padding: '0 10px', lineHeight: '150px' }}>|</span>
-        <Link to="/about">About</Link>
+        <Link to="about">About</Link>
           <Switch>
             {
               routes.map((route, index) => (
