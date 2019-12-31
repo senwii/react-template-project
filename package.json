@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "NODE_ENV=develop webpack-dev-server",
     "build:develop": "NODE_ENV=develop webpack",
-    "build": "NODE_ENV=product webpack"
+    "build": "NODE_ENV=production webpack"
   },
   "author": "senwii",
   "homepage": "https://senii.github.io/react-template-project",
