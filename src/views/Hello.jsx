@@ -1,7 +1,11 @@
 import React from 'react'
+import { Link } from "react-router-dom"
 
 export default function Hello() {
   return (
-    <div>Hello World.</div>
+    <div>
+      /<Link to="/about">About</Link>.
+      Hello World.
+    </div>
   )
 }

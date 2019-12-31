@@ -6,12 +6,12 @@ import {
   Route,
 } from "react-router-dom"
 
-import routes from './router'
+import routes, { basename } from './router'
 
 function App() {
   return (
     <div className="root">
-      <BrowserRouter>
+      <BrowserRouter basename={ basename }>
         <Switch>
               {
                 routes.map((route, index) => (

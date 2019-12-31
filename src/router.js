@@ -11,4 +11,10 @@ const routes = [
   },
 ]
 
+const basename = '/react-template-project/'
+
+export {
+  basename,
+}
+
 export default routes
