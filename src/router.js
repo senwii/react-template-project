@@ -11,7 +11,7 @@ const routes = [
   },
 ]
 
-const basename = '/react-template-project/'
+const basename = `/${process.env.PROJECT_NAME}/`
 
 export {
   basename,

@@ -1,4 +1,6 @@
+const webpack = require('webpack')
 const appDirName = process.cwd()
+const packageName = require(`${appDirName}/package.json`).name
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -31,6 +33,9 @@ const plugins = [
       flatten: true,
     },
   ]),
+  new webpack.DefinePlugin({
+    'process.env.PROJECT_NAME': JSON.stringify(packageName),
+  }),
 ]
 
 if (IS_PRODUCTION) {
