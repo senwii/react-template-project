@@ -51,11 +51,7 @@ module.exports = {
     contentBase: `${appDirName}/dist`,
     // host: '172.23.62.60',
 		compress: true,
-		historyApiFallback: {
-      rewrites: [
-        { from: /./, to: '/404.html' },
-      ],
-    },
+		historyApiFallback: true,
   },
   output: {
     path: `${appDirName}/dist`,
