@@ -44,8 +44,9 @@ if (IS_PRODUCTION) {
 
 module.exports = {
   mode: IS_PRODUCTION ? 'production' : 'development',
+  devtool: 'source-map',
   entry: {
-    entry: `${appDirName}/src/index.js`,
+    entry: `${appDirName}/src/index.tsx`,
   },
 	devServer: {
     contentBase: `${appDirName}/dist`,
@@ -64,6 +65,7 @@ module.exports = {
       '@': appDirName + '/src/',
       '@@': appDirName,
     },
+    extensions: ['.wasm', '.mjs', '.js', '.json', '.ts', '.tsx'],
   },
 	optimization: {
 		splitChunks: {
@@ -82,7 +84,21 @@ module.exports = {
 				test: /\.(js|jsx)$/,
 				exclude: /(node_modules|bower_components)/,
 				loader: 'babel-loader',
-			},
+      },
+      {
+        test: /\.ts(x?)$/,
+        exclude: /node_modules/,
+        use: [
+            {
+              loader: 'ts-loader',
+            },
+        ],
+      },
+      {
+          enforce: "pre",
+          test: /\.js$/,
+          loader: 'source-map-loader',
+      },
       {
 				test: /\.(less|css)$/,
 				use: [

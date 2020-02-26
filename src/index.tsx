@@ -14,7 +14,7 @@ function App() {
       <BrowserRouter basename={ basename }>
         <Switch>
               {
-                routes.map((route, index) => (
+                routes.map((route:any, index) => (
                   <Route path={ route.path } key={ index } render={ props => (
                     <route.component {...props} routes={route.routes} />
                   )} />
@@ -27,6 +27,6 @@ function App() {
 }
 
 ReactDOM.render(
-	<App />,
-	document.getElementById('app'),
+  <App />,
+  document.getElementById('app') as HTMLElement,
 )
