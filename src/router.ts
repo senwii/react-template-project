@@ -11,10 +11,4 @@ const routes = [
   },
 ]
 
-const basename = `/${process.env.PROJECT_NAME}/`
-
-export {
-  basename,
-}
-
 export default routes
