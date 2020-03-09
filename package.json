@@ -10,7 +10,7 @@
     "build": "NODE_ENV=production webpack"
   },
   "author": "senwii",
-  "homepage": "https://senii.github.io/react-template-project",
+  "homepage": "https://blog.senwii.ink/hello",
   "license": "ISC",
   "dependencies": {
     "@loadable/component": "^5.10.3",
