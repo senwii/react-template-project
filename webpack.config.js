@@ -58,7 +58,7 @@ module.exports = {
     path: `${appDirName}/dist`,
     filename: 'entry.[contenthash].js',
     chunkFilename: '[name].[contenthash].js',
-    publicPath: IS_PRODUCTION ? `https://senwii.github.io/react-template-project/` : '/',
+    publicPath: IS_PRODUCTION ? `https://blog.senwii.ink/react-template-project/` : '/',
   },
   resolve: {
     alias: {
